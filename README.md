@@ -1,5 +1,6 @@
-[![Build Status](https://travis-ci.org/encircled/MavenAutoChangelog.svg?branch=master)](https://travis-ci.org/encircled/MavenAutoChangelog)
-[![codecov](https://codecov.io/gh/encircled/MavenAutoChangelog/branch/master/graph/badge.svg)](https://codecov.io/gh/encircled/MavenAutoChangelog)
+[![Build Status](https://github.com/EmbedITCZ/MavenAutoChangelog/workflows/Maven%20clean%20verify/badge.svg)](https://github.com/EmbedITCZ/MavenAutoChangelog/actions?query=workflow%3A%22Maven+clean+verify%22)
+
+[comment fix code coverage later]: [![codecov](https://codecov.io/gh/encircled/MavenAutoChangelog/branch/master/graph/badge.svg)](https://codecov.io/gh/encircled/MavenAutoChangelog)
 
 # Changelog auto generator - maven plugin
 MavenAutoChangelog is a simple maven plugin which generates changelog entries from git commit messages.
