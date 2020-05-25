@@ -8,11 +8,11 @@
     <name>maven-auto-changelog</name>
     <description>Maven changelog generator</description>
 
-    <url>https://github.com/encircled/MavenAutoChangelog</url>
+    <url>https://github.com/EmbedITCZ/MavenAutoChangelog</url>
     <scm>
-        <connection>scm:git:https://github.com/encircled/MavenAutoChangelog.git</connection>
-        <url>https://github.com/encircled/MavenAutoChangelog.git</url>
-        <tag>maven-auto-changelog-0.3.6</tag>
+        <connection>scm:git:https://github.com/EmbedITCZ/MavenAutoChangelog.git</connection>
+        <url>https://github.com/EmbedITCZ/MavenAutoChangelog.git</url>
+        <tag>maven-auto-changelog-0.3.23</tag>
     </scm>
 
     <licenses>
@@ -27,6 +27,10 @@
         <developer>
             <name>Vladislav Kisel</name>
             <email>eencircled@gmail.com</email>
+        </developer>
+        <developer>
+            <name>Dmitrii Bocharov</name>
+            <email>bdshadow@gmail.com</email>
         </developer>
     </developers>
 
