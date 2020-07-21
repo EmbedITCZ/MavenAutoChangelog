@@ -55,7 +55,7 @@ public class ChangelogExecutor {
             log.info("Count of new messages: " + newMessages.size());
             log.debug("Index of 'Unreleased' line: " + unreleasedIndex);
 
-            List<String> resultLines = insertNewMessages(allLines, newMessages, unreleasedIndex, lastTag);
+            List<String> resultLines = insertNewMessages(allLines, newMessages, unreleasedIndex, lastTag, log);
 
             try (BufferedWriter writer = Files.newBufferedWriter(conf.pathToChangelog,
                     StandardCharsets.UTF_8, StandardOpenOption.TRUNCATE_EXISTING)) {
@@ -70,15 +70,23 @@ public class ChangelogExecutor {
         }
     }
 
-    public List<String> insertNewMessages(List<String> allLines, Collection<String> newMessages, int unreleasedIndex, Pair<String, Integer> lastTag) {
+    public List<String> insertNewMessages(List<String> allLines, Collection<String> newMessages, int unreleasedIndex, Pair<String, Integer> lastTag, Log log) {
         int afterUnreleased = unreleasedIndex + 1;
         List<String> linesToInsert = new ArrayList<>();
 
         if (conf.incrementVersionAfterRun == Boolean.TRUE) {
             // append new version line
             linesToInsert.add("");
-            String incremented = incrementLastTag(lastTag.getLeft());
-            String s = allLines.get(lastTag.getRight()).replaceFirst(lastTag.getLeft(), incremented);
+            String s;
+            Matcher matcher = conf.lastTagPattern.matcher(allLines.get(lastTag.getRight()));
+            if (matcher.matches()) {
+                String previousVersionFromTag = matcher.group(1);
+                String incremented = incrementLastTag(previousVersionFromTag);
+                s = allLines.get(lastTag.getRight()).replaceFirst(previousVersionFromTag, incremented);
+            } else {
+                log.error("Didn't manage to increase the last version from the changelog, because couldn't parse the version string. Will use the same version");
+                s = allLines.get(lastTag.getRight());
+            }
             linesToInsert.add(s);
             linesToInsert.add("");
         }

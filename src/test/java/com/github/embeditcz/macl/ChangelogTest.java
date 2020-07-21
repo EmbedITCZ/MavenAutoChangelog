@@ -20,7 +20,7 @@ public class ChangelogTest extends AbstractTest {
         int unreleasedLine = executor.getIndexOfUnreleasedLine(changelog_A());
         Pair<String, Integer> lastTag = executor.getLastTag(changelog_A());
 
-        List<String> result = executor.insertNewMessages(changelog_A(), newMessagesFiltered(), unreleasedLine, lastTag);
+        List<String> result = executor.insertNewMessages(changelog_A(), newMessagesFiltered(), unreleasedLine, lastTag, consoleLog());
         Assert.assertEquals(changelog_A(newMessagesFiltered()), result);
     }
 
@@ -31,7 +31,7 @@ public class ChangelogTest extends AbstractTest {
         int unreleasedLine = executor.getIndexOfUnreleasedLine(allLines);
         Pair<String, Integer> lastTag = executor.getLastTag(changelog_A());
 
-        List<String> result = executor.insertNewMessages(allLines, newMessagesFiltered(), unreleasedLine, lastTag);
+        List<String> result = executor.insertNewMessages(allLines, newMessagesFiltered(), unreleasedLine, lastTag, consoleLog());
 
         ArrayList<String> expected = new ArrayList<>(newMessagesFiltered());
         expected.add(0, "");
@@ -47,7 +47,7 @@ public class ChangelogTest extends AbstractTest {
         Set<String> newMessages = newMessagesFiltered();
         newMessages.add("- (MY-777) new feature");
 
-        List<String> result = executor.insertNewMessages(changelog_A(), newMessages, unreleasedLine, lastTag);
+        List<String> result = executor.insertNewMessages(changelog_A(), newMessages, unreleasedLine, lastTag, consoleLog());
         Assert.assertEquals(changelog_A(newMessagesFiltered()), result);
     }
 
