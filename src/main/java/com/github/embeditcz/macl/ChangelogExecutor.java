@@ -113,6 +113,10 @@ public class ChangelogExecutor {
                 end = i + 1;
             }
             if (end != null && !Character.isDigit(result.charAt(i))) {
+                // skip leading zeroes
+                while (i + 2 < end && result.charAt(i + 1) == '0') {
+                    i++;
+                }
                 start = i + 1;
             }
             i--;
